@@ -12,14 +12,9 @@
     		</tr>
 			<tr>
     			<td>
-    				FirstName: ${userPage.getUser().getFirstName()}
+    				Name: ${userPage.getUser().getFirstName()} ${userPage.getUser().getLastName()}
     			</td>
-    		</tr>
-			<tr>
-    			<td>
-    				LastName: ${userPage.getUser().getLastName()}
-    			</td>
-    		</tr>     	
+    		</tr>    	
 			<tr>
     			<td>
     				Email: ${userPage.getUser().getEmail()}
