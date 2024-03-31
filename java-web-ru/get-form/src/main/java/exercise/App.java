@@ -29,8 +29,10 @@ public final class App {
             	ctx.render("users/index.jte", model("usersPage", page));
             } else {
                  var page = new UsersPage(
-                 	USERS.stream().filter(user -> term.equals(user.getFirstName())).toList(), 
-                 	term);
+                 	USERS.stream().
+                 	filter(user -> user.getFirstName().toLowerCase().startsWith(term.toLowerCase()))
+                 	.toList(), 
+                 	term); 
             	ctx.render("users/index.jte", model("usersPage", page));       
             }
 
