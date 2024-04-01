@@ -53,6 +53,7 @@ public final class App {
         	} catch (ValidationException e) {
         		var page = new BuildArticlePage(
         			ctx.formParam("articleName"), ctx.formParam("articleContent"), e.getErrors());
+        		ctx.status(422);
         		ctx.render("articles/build.jte", model("page", page));
         	}
         });
