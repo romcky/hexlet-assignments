@@ -18,13 +18,13 @@
     		<div>
     			<label>
     				Title: 
-    				<input type="text" name="articleName" value="${page.getArticleName()}" />
+    				<input type="text" name="title" value="${page.getArticleName()}" />
     			</label>
     		</div>
     		<div>
     			<label>
     				Content:
-    				<input type="text" name="articleContent" value="${page.getArticleContent()}" />
+    				<input type="text" name="content" value="${page.getArticleContent()}" />
     			</label>
     		</div>
     		<input type="submit" value="Submit" />

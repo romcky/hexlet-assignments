@@ -39,20 +39,20 @@ public final class App {
         app.post("/articles", ctx -> {
         
         	try {
-        	String articleName = ctx.formParamAsClass("articleName", String.class)
+        	String articleName = ctx.formParamAsClass("title", String.class)
         		.check(value -> value.length() > 1, 
         			"Название не должно быть короче двух символов")
         		.check(value -> ArticleRepository.existsByTitle(value) == false, 
 	        		"Статья с таким названием уже существует")
         		.get();
-        	String articleContent = ctx.formParamAsClass("articleContent", String.class)
+        	String articleContent = ctx.formParamAsClass("content", String.class)
         		.check(value -> value.length() > 9, "Статья должна быть не короче 10 символов")
         		.get();
         	ArticleRepository.save(new Article(articleName, articleContent));
         	ctx.redirect("/articles");
         	} catch (ValidationException e) {
         		var page = new BuildArticlePage(
-        			ctx.formParam("articleName"), ctx.formParam("articleContent"), e.getErrors());
+        			ctx.formParam("title"), ctx.formParam("content"), e.getErrors());
         		ctx.status(422);
         		ctx.render("articles/build.jte", model("page", page));
         	}
