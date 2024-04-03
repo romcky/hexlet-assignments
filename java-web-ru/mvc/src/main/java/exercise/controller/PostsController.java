@@ -72,19 +72,19 @@ public class PostsController {
         var post = PostRepository.find(id)
                 .orElseThrow(() -> new NotFoundResponse("Post not found"));
         try {
-            var newName = ctx.formParamAsClass("newName", String.class)
+            var newName = ctx.formParamAsClass("name", String.class)
                     .check(value -> value.length() >= 2, "Название не должно быть короче двух символов")
                     .get();
 
-            var newBody = ctx.formParamAsClass("newBody", String.class)
+            var newBody = ctx.formParamAsClass("body", String.class)
                     .check(value -> value.length() >= 10, "Пост должен быть не короче 10 символов")
                     .get();
             post.setName(newName);
             post.setBody(newBody);
             ctx.redirect(NamedRoutes.postsPath());
         } catch (ValidationException e) {
-            var newName = ctx.formParam("newName");
-            var newBody = ctx.formParam("newBody");
+            var newName = ctx.formParam("name");
+            var newBody = ctx.formParam("body");
             var page = new EditPostPage(post, e.getErrors(), newName, newBody);
             ctx.render("posts/edit.jte", model("page", page)).status(422);
         }

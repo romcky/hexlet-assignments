@@ -28,13 +28,13 @@ content = @`
             <div>
                 <label>
                     Edit Name:
-                    <input type="text" name="newName" value="${page.getNewName()}" />
+                    <input type="text" name="name" value="${page.getNewName()}" />
                 </label>
             </div>
             <div>
                 <label>
                     Edit Body:
-                    <textarea name="newBody">${page.getNewBody()}</textarea>
+                    <textarea name="body">${page.getNewBody()}</textarea>
                 </label>
             </div>
             <input type="submit" value="Update" />
