@@ -25,6 +25,7 @@ public class PostsController {
     }
 
     @PostMapping("/{id}/posts")
+    @ResponseStatus(HttpStatus.CREATED)
     public Post create(@PathVariable Integer id, @RequestBody String title,
                        @RequestBody String slug, @RequestBody String body) {
         Post post = new Post();
