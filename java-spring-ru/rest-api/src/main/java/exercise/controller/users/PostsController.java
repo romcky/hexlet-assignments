@@ -26,13 +26,14 @@ public class PostsController {
 
     @PostMapping("/{id}/posts")
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@PathVariable Integer id, @RequestBody Post newPost) {
+    public Post create(@PathVariable Integer id, @RequestBody Post newPost) {
         Post post = new Post();
         post.setTitle(newPost.getTitle());
         post.setBody(newPost.getBody());
         post.setSlug(newPost.getSlug());
         post.setUserId(id);
         posts.add(post);
+        return post;
     }
 }
 // END
