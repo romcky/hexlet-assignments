@@ -26,10 +26,11 @@ public class Application {
     private UserProperties userProperties;
 
     @GetMapping("/admins")
-    public List<User> getAdmins() {
+    public List<String> getAdmins() {
         return users.stream()
                 .filter(u -> userProperties.getAdmins().contains(u.getEmail()))
-                .sorted(Comparator.comparing(User::getName))
+                .map(User::getName)
+                .sorted()
                 .toList();
     }
     // END
