@@ -29,12 +29,12 @@ public class PeopleController {
     }
 
     // BEGIN
-    @GetMapping("/")
+    @GetMapping("")
     public List<Person> index() {
         return personRepository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Person create(@RequestBody Person person) {
         return personRepository.save(person);
