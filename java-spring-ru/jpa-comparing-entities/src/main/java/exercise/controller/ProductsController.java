@@ -33,6 +33,7 @@ public class ProductsController {
 
     // BEGIN
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public Product create(@RequestBody Product product) {
         var products = productRepository.findAll();
         if (products.contains(product)) {
