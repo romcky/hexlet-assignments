@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -23,14 +22,12 @@ public class ProductsController {
 
     // BEGIN
     @GetMapping("")
-    public List<Product> select(@RequestParam(defaultValue = "-1") Integer min,
-                                @RequestParam(defaultValue = "-1") Integer max) {
-        if (min < 0 || max < 0) {
-            return productRepository.findAll(Sort.by(Sort.Order.by("price")));
-        } else {
-            return productRepository.findAllByPriceBetweenOrderByPriceAsc(min, max);
-        }
+    public List<Product> select(@RequestParam(defaultValue = "") String min,
+                                @RequestParam(defaultValue = "") String max) {
 
+        int minPrice = min.isEmpty() ? Integer.MIN_VALUE : Integer.parseInt(min);
+        int maxPrice = max.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(max);
+        return productRepository.findAllByPriceBetweenOrderByPriceAsc(minPrice, maxPrice);
     }
     // END
 
