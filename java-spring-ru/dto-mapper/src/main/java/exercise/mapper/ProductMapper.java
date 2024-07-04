@@ -23,10 +23,17 @@ import org.mapstruct.InheritConfiguration;
 public abstract class ProductMapper {
     @Mapping(target = "name", source = "title")
     @Mapping(target = "barcode", source = "vendorCode")
+    @Mapping(target = "cost", source = "price")
     public abstract Product map(ProductCreateDTO dto);
+
+    @Mapping(target = "cost", source = "price")
+    public abstract void update(ProductUpdateDTO dto, @MappingTarget Product model);
+
+    @Mapping(target = "title", source = "name")
+    @Mapping(target = "vendorCode", source = "barcode")
+    @Mapping(target = "price", source = "cost")
     public abstract ProductDTO map(Product model);
 
-    @InheritConfiguration
-    public abstract void update(ProductUpdateDTO dto, @MappingTarget Product model);
+
 }
 // END
